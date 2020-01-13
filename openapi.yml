@@ -1,0 +1,87 @@
+openapi: '3.0.2'
+info:
+  title: Breakfast
+  description: Breakfast API
+  version: '1.0.0'
+  contact:
+    name: Alex Haslehurst
+    url: https://ax-h.com
+    email: alex.haslehurst@gmail.com
+servers:
+  - url: https://api.ax-h.com/v1
+paths:
+  /breakfast-items:
+    get:
+      tags:
+        - breakfast-items
+      summary: List breakfast items
+      operationId: getAllBreakfastItems
+      parameters:
+        - $ref: "common.yaml#/components/parameters/Page"
+        - $ref: "common.yaml#/components/parameters/Limit"
+      responses:
+        '200':
+          description: A paged list of breakfast items
+          content:
+            application/json:    
+              schema:
+                $ref: "breakfast-items.yaml#/components/schemas/PaginatedBreakfastItems"
+        default:
+          $ref: "common.yaml#/components/responses/Error"
+    post:
+      tags:
+        - breakfast-items
+      summary: Create breakfast item
+      operationId: createBreakfastItem
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "breakfast-items.yaml#/components/schemas/UpdateBreakfastItemRequest"
+      responses:
+        '200':
+          description: The created breakfast item
+          content:
+            application/json:    
+              schema:
+                $ref: "breakfast-items.yaml#/components/schemas/BreakfastItem"
+        default:
+          $ref: "common.yaml#/components/responses/Error"
+  /breakfast-items/{id}:
+    get:
+      tags:
+        - breakfast-items
+      summary: Get breakfast item by ID
+      operationId: getBreakfastItem
+      parameters:
+        - $ref: "common.yaml#/components/parameters/Id"
+      responses:
+        '200':
+          description: The breakfast item with the specified ID
+          content:
+            application/json:    
+              schema:
+                $ref: "breakfast-items.yaml#/components/schemas/BreakfastItem"
+        default:
+          $ref: "common.yaml#/components/responses/Error"
+    put:
+      tags:
+        - breakfast-items
+      summary: Update breakfast item by ID
+      operationId: updateBreakfastItem
+      parameters:
+        - $ref: "common.yaml#/components/parameters/Id"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "breakfast-items.yaml#/components/schemas/UpdateBreakfastItemRequest"
+      responses:
+        '200':
+          description: The updated breakfast item
+          content:
+            application/json:    
+              schema:
+                $ref: "breakfast-items.yaml#/components/schemas/BreakfastItem"
+        default:
+          $ref: "common.yaml#/components/responses/Error"

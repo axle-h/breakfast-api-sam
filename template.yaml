@@ -1,0 +1,25 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  breakfast-api
+
+  Sample SAM Template for breakfast-api
+
+Resources:
+  BreakfastItemsFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: src/breakfast-items
+      Handler: app.handler
+      Runtime: nodejs12.x
+      Events:
+        GetBreakfastItem:
+          Type: Api
+          Properties:
+            Path: /breakfast-items/{id}
+            Method: get
+
+Outputs:
+  HelloWorldApi:
+    Description: "API Gateway endpoint URL for Prod stage"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/"

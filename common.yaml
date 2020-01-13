@@ -1,0 +1,65 @@
+openapi: '3.0.2'
+info:
+  title: Common
+  version: '1.0.0'
+paths: {}
+components:
+  parameters:
+    Id:
+      name: id
+      in: path
+      required: true
+      description: The object identifier
+      schema:
+        type: string
+    Page:
+      name: page
+      in: query
+      description: The 1-based page number
+      required: false
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+    Limit:
+      name: limit
+      in: query
+      description: Maximum number of items to return
+      required: false
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+  schemas:
+    PaginatedData:
+      description: Paginated list of data
+      type: object
+      required:
+        - page
+        - limit
+      properties:
+        page:
+          type: integer
+          format: int32
+        limit:
+          type: integer
+          format: int32
+    Error:
+      description: An error
+      type: object
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+  responses:
+    Error:
+      description: Unexpected error
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Error"

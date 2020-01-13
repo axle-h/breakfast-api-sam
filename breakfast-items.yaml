@@ -1,0 +1,48 @@
+openapi: '3.0.2'
+info:
+  title: Breakfast Items
+  version: '1.0.0'
+paths: {}
+components:
+  schemas:
+    UpdateBreakfastItemRequest:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+          maximum: 100
+        calories:
+          type: integer
+          format: int32
+          minimum: 1
+    BreakfastItem:
+      type: object
+      required:
+        - id
+        - name
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        calories:
+          type: integer
+          format: int32
+    BreakfastItems:
+      type: array
+      items:
+        $ref: "#/components/schemas/BreakfastItem"
+    PaginatedBreakfastItems:
+      description: Paginated list of breakfast items
+      allOf:
+        - $ref: "common.yaml#/components/schemas/PaginatedData"
+        - type: object
+          required:
+            - page
+            - limit
+            - data
+          properties:
+            data:
+              $ref: "#/components/schemas/BreakfastItems"

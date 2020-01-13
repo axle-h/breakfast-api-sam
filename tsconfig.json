@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "baseUrl": "/",
+    "target": "es2020",
+    "lib": [ "es2020" ],
+    "module": "commonjs",
+    "allowJs": false,
+    "sourceMap": true,
+    "esModuleInterop": true,
+    "types": ["reflect-metadata"],
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "resolveJsonModule": true
+  },
+  "include": ["src/**/*.ts", "tests/**/*.spec.ts"]
+}
