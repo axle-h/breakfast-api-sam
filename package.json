@@ -45,7 +45,7 @@
     "webpack-cli": "^3.3.10"
   },
   "dependencies": {
-    "aws-sdk": "^2.604.0",
+    "aws-sdk": "^2.814.0",
     "class-transformer": "^0.2.3",
     "inversify": "^5.0.1",
     "mysql": "^2.17.1",
